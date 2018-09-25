@@ -54,6 +54,11 @@ public class Control extends HttpServlet {
                         session.setAttribute("recipes", recipes);
                         request.getRequestDispatcher("showallrecipes.jsp").forward(request, response);
                         break;
+                    
+                    case "showRecipe":
+                        
+                        request.getRequestDispatcher("showRecipe.jsp").forward(request, response);
+                        break;
 
                 }
             }
