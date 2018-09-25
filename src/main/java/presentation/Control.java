@@ -56,7 +56,7 @@ public class Control extends HttpServlet {
                         break;
                     
                     case "showRecipe":
-                        
+                       
                         request.getRequestDispatcher("showRecipe.jsp").forward(request, response);
                         break;
 

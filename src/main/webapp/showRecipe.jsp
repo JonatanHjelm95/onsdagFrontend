@@ -16,8 +16,9 @@
     <body>
         <h1> Recipe </h1>
         <ul> 
-            <% Recipe recipe = new Recipe();
-                out.println(recipe.getRecipeName());
+            <% 
+                String recipeName = request.getParameter("recipe_id");
+                out.println(recipeName);
             %>
         </ul>
 
