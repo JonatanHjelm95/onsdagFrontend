@@ -126,7 +126,7 @@ public class RecipesDAO {
             rs = stmt.executeQuery(query);
             while (rs.next()) {
                 for (int i = 0; i < rs.getRow(); i++) {
-                    
+
                     recipeNames.add(rs.getString("recipeName"));
                 }
 //                recipeNames.add(new Recipe(rs.getString("recipeName")));
@@ -139,5 +139,30 @@ public class RecipesDAO {
             return null;
         }
         return recipeNames;
+    }
+
+    public ArrayList<Recipe> getAllRecipes() {
+        ResultSet rs;
+        ArrayList<Recipe> recipes = new ArrayList();
+
+        try {
+            Statement stmt = con.getConnection().createStatement();
+            String query = "SELECT * FROM cupcakeRecipes.Recipe;";
+
+            rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                String recipeName = rs.getString("recipeName");
+                String instructions = rs.getString("instructions");
+                String rating = rs.getString("rating");
+                String imageURL = rs.getString("image");
+                recipes.add(new Recipe(instructions, imageURL, recipeName, rating));
+//                return recipes;
+            }
+            return recipes;
+
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
     }
 }

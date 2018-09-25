@@ -5,6 +5,8 @@
  */
 package data;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author jonab
@@ -16,8 +18,9 @@ public class NewMain {
      */
     public static void main(String[] args) throws Exception {
         RecipesDAO hej = new RecipesDAO();
-        hej.displayAllRecipeNames();
+//        hej.displayAllRecipeNames();
         //hej.displaySingleRecipe1();
+       
     }
-    
+
 }

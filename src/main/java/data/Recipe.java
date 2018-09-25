@@ -7,11 +7,26 @@ public class Recipe {
     private String instructions;
     private String imgURL;
     private String recipeName;
+    private String rating;
+
+    public Recipe(ArrayList<Ingredient> ingredients, String instructions, String imgURL, String recipeName, String rating) {
+        this.ingredients = ingredients;
+        this.instructions = instructions;
+        this.imgURL = imgURL;
+        this.recipeName = recipeName;
+        this.rating = rating;
+    }
+
+    public Recipe(String instructions, String imgURL, String recipeName, String rating) {
+        this.instructions = instructions;
+        this.imgURL = imgURL;
+        this.recipeName = recipeName;
+        this.rating = rating;
+    }
 
     public Recipe(String recipeName) {
         this.recipeName = recipeName;
     }
-    private String rating;
 
     public void setRating(String rating) {
         this.rating = rating;
