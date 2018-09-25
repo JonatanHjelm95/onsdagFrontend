@@ -24,11 +24,10 @@
             ArrayList<Recipe> recipes = (ArrayList) request.getSession(false).getAttribute("recipes");
             LogicController lc = new LogicController();
             Recipe recipe = lc.getSpecificRecipe(recipeName, recipes);
-            //out.println(recipe);
+            out.println(recipe.getRecipeName());
         %>
         <div>              
             <%
-                out.println(recipe.getRecipeName());
                 out.println("<img src=" + recipe.getImgURL() + ">");
             %>               
         </div>

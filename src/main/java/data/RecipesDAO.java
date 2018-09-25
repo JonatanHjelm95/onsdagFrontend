@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 public class RecipesDAO {
 
     private DBConnector con;
-    private Recipe recipe;
+    //private Recipe recipe;
 
     public RecipesDAO() {
 
@@ -30,7 +30,7 @@ public class RecipesDAO {
             Logger.getLogger(RecipesDAO.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Couldn't connect to DB");
         }
-        this.recipe = new Recipe();
+        //this.recipe = new Recipe();
     }
 
     public void createRecipe() {
@@ -77,10 +77,11 @@ public class RecipesDAO {
     public Recipe displaySingleRecipe1(String recipeName) {
         ResultSet rs = null;
         ResultSet rs2 = null;
+        Recipe recipe;
 
         try {
-            db_GetRecipeData(recipeName);
-            db_GetIngredientsData(recipeName);
+            recipe = db_GetRecipeData(recipeName);
+            recipe.setIngredients(db_GetIngredientsData(recipeName));
             return recipe;
 
         } catch (Exception e) {
@@ -89,32 +90,34 @@ public class RecipesDAO {
         return null;
     }
 
-    private void db_GetIngredientsData(String recipeName) throws SQLException {
+    private ArrayList<Ingredient> db_GetIngredientsData(String recipeName) throws SQLException {
         ResultSet rs2;
         Statement stmt2 = con.getConnection().createStatement();
         String query2 = "SELECT * FROM IngredientDetails\n"
                 + "where recipeName = '" + recipeName + "';";
         rs2 = stmt2.executeQuery(query2);
-        int i = 1;
+        ArrayList<Ingredient> ingredients = new ArrayList();
         while (rs2.next()) {
             Ingredient ingredient = new Ingredient(rs2.getString("ingredientName"), rs2.getString("qty"));
-            recipe.addIngredient(ingredient);
-            i++;
+            ingredients.add(ingredient);            
         }
+        return ingredients;
     }
 
-    private void db_GetRecipeData(String recipeName) throws SQLException {
+    private Recipe db_GetRecipeData(String recipeName) throws SQLException {
         ResultSet rs;
         Statement stmt = con.getConnection().createStatement();
         String query = "SELECT * FROM cupcakeRecipes.Recipe\n"
                 + "where recipeName = '" + recipeName + "';";
         rs = stmt.executeQuery(query);
+        Recipe recipe = new Recipe();
         if (rs.next()) {
             recipe.setRecipeName(rs.getString("recipeName"));
             recipe.setInstructions(rs.getString("instructions"));
             recipe.setRating(rs.getString("rating"));
             recipe.setImgURL(rs.getString("image"));
         }
+        return recipe;
     }
 
     public ArrayList<String> displayAllRecipeNames() {
@@ -146,6 +149,7 @@ public class RecipesDAO {
         ResultSet rs;
         ArrayList<Recipe> recipes = new ArrayList();
 
+
         try {
             Statement stmt = con.getConnection().createStatement();
             String query = "SELECT * FROM cupcakeRecipes.Recipe;";
@@ -153,10 +157,12 @@ public class RecipesDAO {
             rs = stmt.executeQuery(query);
             while (rs.next()) {
                 String recipeName = rs.getString("recipeName");
-                String instructions = rs.getString("instructions");
-                String rating = rs.getString("rating");
-                String imageURL = rs.getString("image");
-                recipes.add(new Recipe(instructions, imageURL, recipeName, rating));
+//                String instructions = rs.getString("instructions");
+//                String rating = rs.getString("rating");
+//                String imageURL = rs.getString("image");
+                Recipe recipe = db_GetRecipeData(recipeName);
+                recipe.setIngredients(db_GetIngredientsData(recipeName));
+                recipes.add(recipe);
 //                return recipes;
             }
             return recipes;
