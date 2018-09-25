@@ -5,14 +5,17 @@
  */
 package presentation;
 
+import data.Recipe;
 import data.RecipesDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -45,11 +48,13 @@ public class Control extends HttpServlet {
                         request.getRequestDispatcher("error.jsp").forward(request, response);
                         break;
 
-//                    case "":
-//                        request.setAttribute(,);
-//                        request.getRequestDispatcher("error.jsp").forward(request, response);
-//                        break;
-                        
+                    case "getRecipes":
+                        HttpSession session = request.getSession();
+                        ArrayList<Recipe> recipes = dao.getAllRecipes();
+                        session.setAttribute("recipes", recipes);
+                        request.getRequestDispatcher("showallrecipes.jsp").forward(request, response);
+                        break;
+
                 }
             }
         }
