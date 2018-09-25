@@ -4,6 +4,7 @@
     Author     : porse
 --%>
 
+<%@page import="java.util.List"%>
 <%@page import="data.Recipe"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -15,13 +16,13 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        <ul> 
-            <% ArrayList<Recipe> recipes = (ArrayList) request.getAttribute("recipes");
+        <ul>
+            <%
+                ArrayList<Recipe> recipes = (ArrayList) request.getSession(false).getAttribute("recipes");
                 for (Recipe recipe : recipes) {
                     out.println("<li>" + recipe.getRecipeName() + "</li>");
-
                 }
-            %> 
+            %>
         </ul>
     </body>
 </html>
