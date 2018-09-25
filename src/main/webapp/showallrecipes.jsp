@@ -20,7 +20,7 @@
             <%
                 ArrayList<Recipe> recipes = (ArrayList) request.getSession(false).getAttribute("recipes");
                 for (Recipe recipe : recipes) {
-                    out.println("<li><a href=\"?origin=showRecipe&recipe_id=\""+recipe.getRecipeName()+"\">" + recipe.getRecipeName() + "</a></li>");
+                    out.println("<li><a href=\"?origin=showRecipe&recipe_id="+recipe.getRecipeName()+"\">" + recipe.getRecipeName() + "</a></li>");
                 }
             %>
         </ul>

@@ -83,5 +83,10 @@ public class Recipe {
     public String getInstructions() {
         return instructions;
     }
+
+    @Override
+    public String toString() {
+        return "Recipe{" + "ingredients=" + ingredients + ", instructions=" + instructions + ", imgURL=" + imgURL + ", recipeName=" + recipeName + ", rating=" + rating + '}';
+    }
     
 }
