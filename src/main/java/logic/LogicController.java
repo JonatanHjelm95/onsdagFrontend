@@ -8,6 +8,7 @@ package logic;
 import data.Ingredient;
 import data.Recipe;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
@@ -39,6 +40,11 @@ public class LogicController {
         }
         
         return ingre;
+    }
+    
+    public ArrayList<Recipe> sortRecipesByDate(ArrayList<Recipe> recipes) {
+        Collections.sort(recipes, new RecipeComparator());
+        return recipes;
     }
 
 }

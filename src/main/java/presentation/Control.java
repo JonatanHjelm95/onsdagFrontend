@@ -55,6 +55,7 @@ public class Control extends HttpServlet {
                     case "getRecipes":
                         HttpSession session = request.getSession();
                         ArrayList<Recipe> recipes = dao.getAllRecipes();
+                        lc.sortRecipesByDate(recipes);
                         session.setAttribute("recipes", recipes);
                         request.getRequestDispatcher("showallrecipes.jsp").forward(request, response);
                         break;
