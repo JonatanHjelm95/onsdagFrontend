@@ -4,6 +4,8 @@
     Author     : porse
 --%>
 
+<%@page import="java.util.Comparator"%>
+<%@page import="java.util.Collections"%>
 <%@page import="java.util.List"%>
 <%@page import="data.Recipe"%>
 <%@page import="java.util.ArrayList"%>
@@ -19,6 +21,7 @@
         <ul>
             <%
                 ArrayList<Recipe> recipes = (ArrayList) request.getSession(false).getAttribute("recipes");
+                Collections.sort(recipes, Comparator.comparing(Recipe::getRecipeName));
                 for (Recipe recipe : recipes) {
                     out.println("<li><a href=\"?origin=showRecipe&recipe_id="+recipe.getRecipeName()+"\">" + recipe.getRecipeName() + "</a></li>");
                 }
