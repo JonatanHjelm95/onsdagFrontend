@@ -4,6 +4,7 @@
     Author     : porse
 --%>
 
+<%@page import="logic.CollectionToHTML"%>
 <%@page import="java.util.Comparator"%>
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.List"%>
@@ -21,11 +22,19 @@
         <ul>
             <%
                 ArrayList<Recipe> recipes = (ArrayList) request.getSession(false).getAttribute("recipes");
-                //Collections.sort(recipes, Comparator.comparing(Recipe::getRecipeName));
+               // Collections.sort(recipes, Comparator.comparing(Recipe::getRecipeName));
                 for (Recipe recipe : recipes) {
                     out.println("<li><a href=\"?origin=showRecipe&recipe_id="+recipe.getRecipeName()+"\">" + recipe.getRecipeName() + "</a></li>");
                 }
             %>
         </ul>
+        
+        <div>
+            <%
+                CollectionToHTML cthtml = new CollectionToHTML();
+                String columns = cthtml.generateHTMLString(recipes);
+                out.println(columns);
+              %>
+        </div>
     </body>
 </html>
