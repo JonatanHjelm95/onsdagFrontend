@@ -33,14 +33,11 @@ public class RecipesDAO {
         //this.recipe = new Recipe();
     }
 
-    public void createRecipe() {
-        ResultSet rs = null;
-
+    public void editRecipe(Recipe recipe) {
         try {
             Statement stmt = con.getConnection().createStatement();
-            String query = "insert into Recipe\n"
-                    + "values ('Farmors flotte kager', 'Kom alle ingredienser i en skål og så smid det i ovnen', 'Tommel op', null),\n"
-                    + "('Bedstemor med slag i', 'Fuld drøn på røremaskinen og så 400 grader i ovnen 20 min', 'Tommel op', null);";
+            String query = "DELETE FROM `cupcakeRecipes`.`Recipe` WHERE `recipeName`='"
+                    + recipe.getRecipeName() + "';";
 
             stmt.executeUpdate(query);
 //            System.out.println(rs);
@@ -48,8 +45,45 @@ public class RecipesDAO {
         } catch (Exception e) {
             System.out.println(e);
         }
+        
+    }
+    
+    public void createRecipe(Recipe recipe) {
+        ResultSet rs = null;
+
+        try {
+            Statement stmt = con.getConnection().createStatement();
+            String query = "INSERT INTO `cupcakeRecipes`.`Recipe`" +
+                    "(`recipeName`, `instructions`, `rating`, `image`)" +
+                    " VALUES ('" + recipe.getRecipeName() + "', '" + recipe.getInstructions() +
+                    "', 'Tommel op', '" + recipe.getImgURL() + "');";
+
+            stmt.executeUpdate(query);
+            String query2 = "INSERT";
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
 
     }
+    
+//    public void createRecipe() {
+//        ResultSet rs = null;
+//
+//        try {
+//            Statement stmt = con.getConnection().createStatement();
+//            String query = "insert into Recipe\n"
+//                    + "values ('Farmors flotte kager', 'Kom alle ingredienser i en skål og så smid det i ovnen', 'Tommel op', null),\n"
+//                    + "('Bedstemor med slag i', 'Fuld drøn på røremaskinen og så 400 grader i ovnen 20 min', 'Tommel op', null);";
+//
+//            stmt.executeUpdate(query);
+////            System.out.println(rs);
+//
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+//
+//    }
 
     public String displaySingleRecipe(String recipeName) {
         ResultSet rs;
@@ -172,4 +206,5 @@ public class RecipesDAO {
             return null;
         }
     }
+    
 }

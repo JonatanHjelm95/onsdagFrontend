@@ -21,7 +21,7 @@
         <ul>
             <%
                 ArrayList<Recipe> recipes = (ArrayList) request.getSession(false).getAttribute("recipes");
-                Collections.sort(recipes, Comparator.comparing(Recipe::getRecipeName));
+                //Collections.sort(recipes, Comparator.comparing(Recipe::getRecipeName));
                 for (Recipe recipe : recipes) {
                     out.println("<li><a href=\"?origin=showRecipe&recipe_id="+recipe.getRecipeName()+"\">" + recipe.getRecipeName() + "</a></li>");
                 }
