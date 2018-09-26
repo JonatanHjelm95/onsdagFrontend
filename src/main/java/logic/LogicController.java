@@ -5,6 +5,7 @@
  */
 package logic;
 
+import data.Ingredient;
 import data.Recipe;
 import java.util.ArrayList;
 
@@ -27,6 +28,17 @@ public class LogicController {
                 return recipe;
         }
         return null;
+    }
+    
+    public ArrayList<Ingredient> convertStringToIngredients(String ingredients) {
+        ArrayList<Ingredient> ingre = new ArrayList();
+        String[] array = ingredients.split(":");
+        for (int i = 0; i<array.length; i++){
+            String[] nameAndQty = array[i].split(" ");
+            ingre.add(new Ingredient(nameAndQty[0],nameAndQty[1]));
+        }
+        
+        return ingre;
     }
 
 }

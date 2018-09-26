@@ -5,6 +5,7 @@
  */
 package presentation;
 
+import data.Ingredient;
 import data.Recipe;
 import data.RecipesDAO;
 import java.io.IOException;
@@ -16,6 +17,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import logic.CreateDate;
+import logic.LogicController;
 
 /**
  *
@@ -25,6 +28,7 @@ import javax.servlet.http.HttpSession;
 public class Control extends HttpServlet {
 
     private RecipesDAO dao = new RecipesDAO();
+    private LogicController lc = new LogicController();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -58,6 +62,22 @@ public class Control extends HttpServlet {
                     case "showRecipe":
 
                         request.getRequestDispatcher("showRecipe.jsp").forward(request, response);
+                        break;
+                        
+                    case "newRecipe":
+                        request.getRequestDispatcher("addRecipe.jsp").forward(request, response);
+                        break;
+                        
+                    case "createRecipe":
+                        String recipeName = request.getParameter("recipename");
+                        String ingredients = request.getParameter("ingredients");
+                        String instructions = request.getParameter("instructions");
+                        ArrayList<Ingredient> ingres = lc.convertStringToIngredients(ingredients);
+                        Recipe recipe = new Recipe(ingres, instructions, "images/kage.jpg", recipeName, 3);
+                        CreateDate da = new CreateDate();
+                        recipe.setDate(da.createDate());
+                        dao.createRecipe(recipe);
+                        request.getRequestDispatcher("frontPage.jsp").forward(request, response);
                         break;
 
                     default:

@@ -16,6 +16,7 @@
         <div>
             <%
                 out.println("<li><a href=\"?origin=getRecipes\">" + "See all recipes" + "</a></li>");
+                out.println("<li><a href=\"?origin=newRecipe\">" + "Create recipe" + "</a></li>");
             %>
         </div>
     </body>
