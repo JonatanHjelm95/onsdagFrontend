@@ -45,28 +45,34 @@ public class RecipesDAO {
         } catch (Exception e) {
             System.out.println(e);
         }
-        
+
     }
-    
+
     public void createRecipe(Recipe recipe) {
         ResultSet rs = null;
 
         try {
             Statement stmt = con.getConnection().createStatement();
-            String query = "INSERT INTO `cupcakeRecipes`.`Recipe`" +
-                    "(`recipeName`, `instructions`, `rating`, `image`)" +
-                    " VALUES ('" + recipe.getRecipeName() + "', '" + recipe.getInstructions() +
-                    "', 'Tommel op', '" + recipe.getImgURL() + "');";
-
+            String query = "INSERT INTO `cupcakeRecipes`.`Recipe`"
+                    + " (`recipeName`, `created`, `instructions`, `rating`, `image`)"
+                    + " VALUES ('" + recipe.getRecipeName() + "', '" + recipe.getDate() + "',"
+                    + " '" + recipe.getInstructions() + "',"
+                    + " '" + recipe.getRating() + "', '" + recipe.getImgURL() + "');";
             stmt.executeUpdate(query);
-            String query2 = "INSERT";
+            String query2 = "";
+            for (Ingredient ingredient : recipe.getIngredients()) {
+                query2 += "INSERT INTO `cupcakeRecipes`.`IngredientDetails`"
+                        + " (`qty`, `recipeName`, `ingredientName`)"
+                        + " VALUES ('" + ingredient.getQty() + "', '" + recipe.getRecipeName() + "', '" + ingredient.getName() + "');";
+                stmt.executeUpdate(query2);
+            }
 
         } catch (Exception e) {
             System.out.println(e);
         }
 
     }
-    
+
 //    public void createRecipe() {
 //        ResultSet rs = null;
 //
@@ -84,7 +90,6 @@ public class RecipesDAO {
 //        }
 //
 //    }
-
     public String displaySingleRecipe(String recipeName) {
         ResultSet rs;
 
@@ -133,7 +138,7 @@ public class RecipesDAO {
         ArrayList<Ingredient> ingredients = new ArrayList();
         while (rs2.next()) {
             Ingredient ingredient = new Ingredient(rs2.getString("ingredientName"), rs2.getString("qty"));
-            ingredients.add(ingredient);            
+            ingredients.add(ingredient);
         }
         return ingredients;
     }
@@ -148,7 +153,7 @@ public class RecipesDAO {
         if (rs.next()) {
             recipe.setRecipeName(rs.getString("recipeName"));
             recipe.setInstructions(rs.getString("instructions"));
-            recipe.setRating(rs.getString("rating"));
+            recipe.setRating(rs.getInt("rating"));
             recipe.setImgURL(rs.getString("image"));
         }
         return recipe;
@@ -183,7 +188,6 @@ public class RecipesDAO {
         ResultSet rs;
         ArrayList<Recipe> recipes = new ArrayList();
 
-
         try {
             Statement stmt = con.getConnection().createStatement();
             String query = "SELECT * FROM cupcakeRecipes.Recipe;";
@@ -206,5 +210,5 @@ public class RecipesDAO {
             return null;
         }
     }
-    
+
 }

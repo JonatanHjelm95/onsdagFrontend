@@ -7,7 +7,16 @@ public class Recipe {
     private String instructions;
     private String imgURL;
     private String recipeName;
-    private String rating;
+    private int rating;
+    private String date;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     public Recipe() {
         ingredients = new ArrayList();
@@ -18,7 +27,7 @@ public class Recipe {
         this.imgURL = imgURL;    
         ingredients = new ArrayList<>();
     }
-    public Recipe(ArrayList<Ingredient> ingredients, String instructions, String imgURL, String recipeName, String rating) {
+    public Recipe(ArrayList<Ingredient> ingredients, String instructions, String imgURL, String recipeName, int rating) {
         this.ingredients = ingredients;
         this.instructions = instructions;
         this.imgURL = imgURL;
@@ -26,7 +35,7 @@ public class Recipe {
         this.rating = rating;
     }
 
-    public Recipe(String instructions, String imgURL, String recipeName, String rating) {
+    public Recipe(String instructions, String imgURL, String recipeName, int rating) {
         this.instructions = instructions;
         this.imgURL = imgURL;
         this.recipeName = recipeName;
@@ -37,7 +46,7 @@ public class Recipe {
         this.recipeName = recipeName;
     }
 
-    public void setRating(String rating) {
+    public void setRating(int rating) {
         this.rating = rating;
     }
 
@@ -49,7 +58,7 @@ public class Recipe {
         return recipeName;
     }
 
-    public String getRating() {
+    public int getRating() {
         return rating;
     }
 

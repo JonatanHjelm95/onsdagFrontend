@@ -23,6 +23,13 @@ public class NewMain {
         
         String dato = da.createDate();
         System.out.println(dato);
+        ArrayList<Ingredient> ingredients = new ArrayList();
+        ingredients.add(new Ingredient("Banan", "2"));
+        ingredients.add(new Ingredient("Mel", "250"));
+        ingredients.add(new Ingredient("Mælk", "3"));
+        Recipe recipe = new Recipe(ingredients, "Kom alle ingredienser i en skål og så smid det i ovnen", "images/kage.jpg", "Farmors flotte kager", 2);
+        recipe.setDate(dato);
+        hej.createRecipe(recipe);
 //        hej.displayAllRecipeNames();
         //hej.displaySingleRecipe1();
        
