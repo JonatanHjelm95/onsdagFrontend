@@ -29,7 +29,8 @@ public class NewMain {
         ingredients.add(new Ingredient("Mælk", "3"));
         Recipe recipe = new Recipe(ingredients, "Kom alle ingredienser i en skål og så smid det i ovnen", "images/kage.jpg", "Farmors flotte kager", 2);
         recipe.setDate(dato);
-        hej.createRecipe(recipe);
+//        hej.createRecipe(recipe);
+        da.convertToDate(dato);
 //        hej.displayAllRecipeNames();
         //hej.displaySingleRecipe1();
        

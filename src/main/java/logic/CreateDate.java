@@ -21,7 +21,7 @@ public class CreateDate {
         date_str += "-";
         date_str += createMonth(date.getMonth());
         date_str += "-";
-        date_str += date.getYear()+1900;
+        date_str += date.getYear() + 1900;
         return date_str;
     }
 
@@ -35,5 +35,17 @@ public class CreateDate {
 
         }
         return month_str;
+    }
+
+    public Date convertToDate(String date_str) {
+        String dateArr[] = date_str.split("-");
+        int day = Integer.parseInt(dateArr[0]);
+        int month = Integer.parseInt(dateArr[1]);
+        int year = Integer.parseInt(dateArr[2]);
+        Date date = new Date();
+        date.setDate(day);
+        date.setMonth(month - 1);
+        date.setYear(year - 1900);
+        return date;
     }
 }

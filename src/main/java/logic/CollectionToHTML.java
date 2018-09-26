@@ -8,6 +8,8 @@ package logic;
 import data.Recipe;
 import data.RecipesDAO;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 
 /**
  *
@@ -47,5 +49,17 @@ public class CollectionToHTML {
         recipesHTML += "</table>";
 
         return recipesHTML;
+    }
+
+    public ArrayList sortByYear(ArrayList<Recipe> recipes) {
+        
+        CreateDate da = new CreateDate();
+        for (int i = 0; i < recipes.size(); i++) {
+            
+            Date date0 = da.convertToDate(recipes.get(i).getDate());
+            Date date1 = da.convertToDate(recipes.get(i+1).getDate());
+            
+            int compareTo = date0.compareTo(date1);
+        }
     }
 }
