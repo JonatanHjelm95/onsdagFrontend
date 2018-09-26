@@ -6,6 +6,7 @@
 package data;
 
 import java.util.ArrayList;
+import logic.CreateDate;
 
 /**
  *
@@ -18,6 +19,10 @@ public class NewMain {
      */
     public static void main(String[] args) throws Exception {
         RecipesDAO hej = new RecipesDAO();
+        CreateDate da = new CreateDate();
+        
+        String dato = da.createDate();
+        System.out.println(dato);
 //        hej.displayAllRecipeNames();
         //hej.displaySingleRecipe1();
        
