@@ -152,6 +152,7 @@ public class RecipesDAO {
         Recipe recipe = new Recipe();
         if (rs.next()) {
             recipe.setRecipeName(rs.getString("recipeName"));
+            recipe.setDate(rs.getString("created"));
             recipe.setInstructions(rs.getString("instructions"));
             recipe.setRating(rs.getInt("rating"));
             recipe.setImgURL(rs.getString("image"));

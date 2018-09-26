@@ -26,18 +26,20 @@ public class CollectionToHTML {
         recipesHTML = "<table style=\"width:100%\">\n"
                 + "  <tr>\n"
                 + "    <th>Recipe name</th>\n"
+                + "    <th>Created</th>\n"
                 + "    <th>Instructions</th> \n"
                 + "    <th>Rating</th>\n"
                 + "    <th>Image</th>\n"
                 + "  </tr>\n";
         String inputData = "";
         for (int i = 0; i < recipes.size(); i++) {
-            inputData =  "  <tr>\n"
-                + "    <td>"+recipes.get(i).getRecipeName()+"</td>\n"
-                + "    <td>"+recipes.get(i).getInstructions()+"</td> \n"
-                + "    <td>"+recipes.get(i).getRating()+"</td>\n"
-                + "    <td><img src =\""+recipes.get(i).getImgURL()+"\"></td>\n"
-                + "  </tr>\n";
+            inputData = "  <tr>\n"
+                    + "    <td>" + recipes.get(i).getRecipeName() + "</td>\n"
+                    + "    <td>" + recipes.get(i).getDate() + "</td>\n"
+                    + "    <td>" + recipes.get(i).getInstructions() + "</td> \n"
+                    + "    <td>" + recipes.get(i).getRating() + "</td>\n"
+                    + "    <td><img src =\"" + recipes.get(i).getImgURL() + "\"></td>\n"
+                    + "  </tr>\n";
             recipesHTML += inputData;
             inputData = "";
         }
