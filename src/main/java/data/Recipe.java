@@ -9,6 +9,15 @@ public class Recipe {
     private String recipeName;
     private String rating;
 
+    public Recipe() {
+        ingredients = new ArrayList();
+    }
+
+    public Recipe(String instructions, String imgURL) {
+        this.instructions = instructions;
+        this.imgURL = imgURL;    
+        ingredients = new ArrayList<>();
+    }
     public Recipe(ArrayList<Ingredient> ingredients, String instructions, String imgURL, String recipeName, String rating) {
         this.ingredients = ingredients;
         this.instructions = instructions;
@@ -62,15 +71,6 @@ public class Recipe {
     }
     
     
-    public Recipe() {
-        ingredients = new ArrayList();
-    }
-
-    public Recipe(String instructions, String imgURL) {
-        this.instructions = instructions;
-        this.imgURL = imgURL;    
-        ingredients = new ArrayList<>();
-    }
     
     public void addIngredient(Ingredient ingredient) {
         ingredients.add(ingredient);
