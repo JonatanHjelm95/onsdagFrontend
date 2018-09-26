@@ -38,8 +38,9 @@ public class RecipesDAO {
             Statement stmt = con.getConnection().createStatement();
             String query = "DELETE FROM `cupcakeRecipes`.`Recipe` WHERE `recipeName`='"
                     + recipe.getRecipeName() + "';";
-
+            
             stmt.executeUpdate(query);
+            createRecipe(recipe);
 //            System.out.println(rs);
 
         } catch (Exception e) {
@@ -61,7 +62,7 @@ public class RecipesDAO {
             stmt.executeUpdate(query);
             String query2 = "";
             for (Ingredient ingredient : recipe.getIngredients()) {
-                query2 += "INSERT INTO `cupcakeRecipes`.`IngredientDetails`"
+                query2 = "INSERT INTO `cupcakeRecipes`.`IngredientDetails`"
                         + " (`qty`, `recipeName`, `ingredientName`)"
                         + " VALUES ('" + ingredient.getQty() + "', '" + recipe.getRecipeName() + "', '" + ingredient.getName() + "');";
                 stmt.executeUpdate(query2);
