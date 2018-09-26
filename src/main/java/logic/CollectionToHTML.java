@@ -25,7 +25,7 @@ public class CollectionToHTML {
     public String generateHTMLString(ArrayList<Recipe> recipes) {
         RecipesDAO dao = new RecipesDAO();
 
-        recipesHTML = "<table style=\"width:100%\">\n"
+        recipesHTML = "<table style=\"width:100%\" id=\"recipes\">\n"
                 + "  <tr>\n"
                 + "    <th>Recipe name</th>\n"
                 + "    <th>Created</th>\n"
@@ -51,15 +51,15 @@ public class CollectionToHTML {
         return recipesHTML;
     }
 
-    public ArrayList sortByYear(ArrayList<Recipe> recipes) {
-        
-        CreateDate da = new CreateDate();
-        for (int i = 0; i < recipes.size(); i++) {
-            
-            Date date0 = da.convertToDate(recipes.get(i).getDate());
-            Date date1 = da.convertToDate(recipes.get(i+1).getDate());
-            
-            int compareTo = date0.compareTo(date1);
-        }
-    }
+//    public ArrayList sortByYear(ArrayList<Recipe> recipes) {
+//        
+//        CreateDate da = new CreateDate();
+//        for (int i = 0; i < recipes.size(); i++) {
+//            
+//            Date date0 = da.convertToDate(recipes.get(i).getDate());
+//            Date date1 = da.convertToDate(recipes.get(i+1).getDate());
+//            
+//            int compareTo = date0.compareTo(date1);
+//        }
+//    }
 }

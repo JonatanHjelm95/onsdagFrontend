@@ -15,26 +15,29 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel = "stylesheet"
+              type = "text/css"
+              href = "ShowAllRecipesStyle.css" />
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Recipes</h1>
         <ul>
             <%
                 ArrayList<Recipe> recipes = (ArrayList) request.getSession(false).getAttribute("recipes");
-               // Collections.sort(recipes, Comparator.comparing(Recipe::getRecipeName));
+                // Collections.sort(recipes, Comparator.comparing(Recipe::getRecipeName));
                 for (Recipe recipe : recipes) {
-                    out.println("<li><a href=\"?origin=showRecipe&recipe_id="+recipe.getRecipeName()+"\">" + recipe.getRecipeName() + "</a></li>");
+                    out.println("<li><a href=\"?origin=showRecipe&recipe_id=" + recipe.getRecipeName() + "\">" + recipe.getRecipeName() + "</a></li>");
                 }
             %>
         </ul>
-        
-        <div>
+
+        <div id ="recipesTable">
             <%
                 CollectionToHTML cthtml = new CollectionToHTML();
                 String columns = cthtml.generateHTMLString(recipes);
                 out.println(columns);
-              %>
+            %>
         </div>
     </body>
 </html>
